@@ -6,11 +6,11 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./App.css";
 import Register from "./pages/Register";
-import About from "./pages/About";
-import Question from "./pages/Question";
-import Quiz from "./pages/Quiz";
-import QuizInfo from "./pages/QuizInfo";
-import { QuizContext } from "./helpers/QuizContext";
+// import About from "./pages/About";
+// import Question from "./pages/Question";
+// import Quiz from "./pages/Quiz";
+// import QuizInfo from "./pages/QuizInfo";
+// import { QuizContext } from "./helpers/QuizContext";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -37,7 +37,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("https://api-quiz-app.onrender.com/auth/auth", {
+      .get("http://localhost:27438/auth/auth", {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
@@ -57,25 +57,25 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-black">
+    <div className="bg-white">
       <AuthContext.Provider value={{ authState, setAuthState }}>
         <Router>
-          <div className="sticky h-full flex items-center text-white justify-between py-2 px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48 text-md bg-black bg-opacity-50 m-5 rounded-md z-10">
+          <div className="sticky h-full flex items-center text-white justify-between py-4 px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48 text-md bg-[#852a25]   rounded-md z-10">
             <div className="md:hidden lg:flex w-1/3">
               <Link
                 to="/"
-                className="text-sm bg-black rounded-md p-1 font-semibold flex items-center justify-center"
+                className="text-sm bg-black rounded-md p-2 font-semibold flex gap-4 items-center justify-center"
               >
                 <img src="/bxs-graduation.svg" alt="Icon" />
-                <span>BizMathPro</span>
+                <span>Website name</span>
               </Link>
             </div>
 
-            <Link to="/about"> About</Link>
-            <Link to="/quiz">Quiz</Link>
+            {/* <Link to="/about"> About</Link>
+            <Link to="/quiz">Quiz</Link> */}
             {!authState.status ? (
               <>
-                <Link to="/login"> Login</Link>
+                <Link to="/login" className="font-bold tracking-wide  text-[#fabc52]"> Login</Link>
                 {/* {/<Link to="/register"> Register</Link>/} */}
               </>
             ) : (
@@ -99,12 +99,12 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/about" element={<About />} />
+            {/* <Route path="/about" element={<About />} /> */}
             {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-            <Route path="/quiz" element={<Quiz />} />
+            {/* <Route path="/quiz" element={<Quiz />} />
             <Route path="/quiz/info/:quizId" element={<QuizInfo />} />
             <Route path="/quiz/:quizId" element={<Question />} />
-            <Route path="/answer/:quizId" element={<Question />} />
+            <Route path="/answer/:quizId" element={<Question />} /> */}
 
           </Routes>
         </Router>

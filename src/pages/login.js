@@ -24,7 +24,7 @@ function Login() {
     };
 
     axios
-      .post("https://api-quiz-app.onrender.com/auth/login", data)
+      .post("http://localhost:27438/auth/login", data)
       .then((response) => {
         console.log(response.data);
         if (response.data.error) {
@@ -53,8 +53,8 @@ function Login() {
         <div className="absolute inset-0 h-full bg-black bg-opacity-75 z-50 flex gap-4 flex-col justify-center items-center">
           <FidgetSpinner
             visible={true}
-            height={80}
-            backgroundColor="#c28f33"
+            height={100}
+            backgroundColor="#f5b951"
             width={80}
             ariaLabel="fidget-spinner-loading"
             wrapperStyle={{}}
@@ -63,19 +63,15 @@ function Login() {
           <p className="text-white  text-xl">Please wait ..</p>
         </div>
       )}
-      <main className="flex-column justify-center items-center ">
-        <video
-          autoPlay
-          muted
-          controls={false}
-          loop
-          playsInline
-          className="fixed inset-0 object-cover w-full h-full z-0"
-        >
-          <source src="/video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <h1 className="text-center relative text-orange-200 font-bold text-4xl my-10 z-10">
+      <div className="min-h-screen">
+        <div>
+          <img
+            src="/LOGO-UTM.png"
+            className="text-center m-auto py-8 w-[24rem]"
+          ></img>
+        </div>
+
+        <h1 className="text-center relative text-black font-bold text-3xl my-4 z-10">
           Login Form
         </h1>
 
@@ -86,7 +82,7 @@ function Login() {
                 <div className="mb-4">
                   <label
                     htmlFor="email"
-                    className="block px-3 text-orange-200  font-bold mb-2"
+                    className="block px-3 text-black  font-bold mb-2"
                   >
                     Email address
                   </label>
@@ -106,7 +102,7 @@ function Login() {
                 <div className="mb-6">
                   <label
                     htmlFor="password"
-                    className="block px-3 text-orange-200 font-bold mb-2"
+                    className="block px-3 text-black font-bold mb-2"
                   >
                     Password
                   </label>
@@ -131,7 +127,7 @@ function Login() {
                     id="flexCheckDefault"
                   />
                   <label
-                    className=" text-orange-200"
+                    className=" text-black"
                     htmlFor="flexCheckDefault"
                   >
                     Remember me
@@ -141,13 +137,13 @@ function Login() {
                 <div className="flex items-center justify-center text-center gap-4 font-bold text-xl">
                   <button
                     onClick={login}
-                    className="bg-[#235785] transition hover:border-black hover:bg-[#c28f33] border text-white font-bold p-2 rounded-full w-1/2"
+                    className="bg-[#235785] transition hover:border-black hover:bg-[#f5b951] border text-white hover:text-black font-bold p-2 rounded-full w-1/2"
                   >
                     Login
                   </button>
                   <Link
                     to="/register"
-                    className="bg-zinc-800 transition bg-opacity-70 text-white hover:border-black  hover:bg-[#c28f33] rounded-full font-bold border-2 border-orange-200 p-2 rounded-full w-1/2"
+                    className="bg-zinc-800 transition bg-opacity-70 text-white hover:text-black hover:border-black  hover:bg-[#f5b951]  font-bold border  p-2 rounded-full w-1/2"
                   >
                     Register
                   </Link>
@@ -156,7 +152,7 @@ function Login() {
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </>
   );
 }

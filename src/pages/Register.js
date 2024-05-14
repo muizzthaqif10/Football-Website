@@ -13,31 +13,29 @@ function Register() {
 
   const register = (event) => {
     event.preventDefault(); // Prevent default form submission behavior
-  
+
     // Check if any of the fields are empty
     if (!username || !email || !password) {
       alert("Please fill out all the fields.");
       return; // Exit the function early if any field is empty
     }
-  
+
     const data = {
       username: username,
       email: email,
       password: password,
     };
-  
-    axios.post("https://api-quiz-app.onrender.com/auth", data)
-      .then((response) => {
-        console.log(response.data);
-        if (response.data.error) {
-          alert(response.data.error);
-        } else {
-          alert("Success register")
-          navigate("/login");
-        }
-      });
+
+    axios.post("http://localhost:27438/auth", data).then((response) => {
+      console.log(response.data);
+      if (response.data.error) {
+        alert(response.data.error);
+      } else {
+        alert("Success register");
+        navigate("/login");
+      }
+    });
   };
-  
 
   return (
     <>
@@ -47,7 +45,7 @@ function Register() {
             <FidgetSpinner
               visible={true}
               height={80}
-              backgroundColor="#c28f33"
+              backgroundColor="#f5b951"
               width={80}
               ariaLabel="fidget-spinner-loading"
               wrapperStyle={{}}
@@ -57,7 +55,14 @@ function Register() {
           </div>
         )}
         <section className="flex-column justify-center items-center ">
-          <h1 className="relative z-10 text-center text-orange-200 font-bold text-4xl my-10">
+          <div>
+            <img
+              src="/LOGO-UTM.png"
+              className="text-center m-auto py-8 w-[24rem]"
+            ></img>
+          </div>
+
+          <h1 className="relative z-10 text-center text-black font-bold text-3xl my-4">
             Registration Form
           </h1>
 
@@ -68,7 +73,7 @@ function Register() {
                   <div className="mb-4">
                     <label
                       htmlFor="username"
-                      className="block px-3 text-orange-200  font-bold mb-2"
+                      className="block px-3 text-black  font-bold mb-2"
                     >
                       Username
                     </label>
@@ -87,7 +92,7 @@ function Register() {
                   <div className="mb-4">
                     <label
                       htmlFor="email"
-                      className="block px-3 text-orange-200  font-bold mb-2"
+                      className="block px-3 text-black  font-bold mb-2"
                     >
                       Email address
                     </label>
@@ -107,7 +112,7 @@ function Register() {
                   <div className="mb-6">
                     <label
                       htmlFor="password"
-                      className="block px-3 text-orange-200 font-bold mb-2"
+                      className="block px-3 text-black font-bold mb-2"
                     >
                       Password
                     </label>
@@ -131,10 +136,7 @@ function Register() {
                       value=""
                       id="flexCheckDefault"
                     />
-                    <label
-                      className=" text-orange-200"
-                      htmlFor="flexCheckDefault"
-                    >
+                    <label className=" text-black" htmlFor="flexCheckDefault">
                       Remember me
                     </label>
                   </div>
@@ -142,7 +144,7 @@ function Register() {
                   <div className="flex items-center justify-center gap-4 font-bold text-xl">
                     <button
                       onClick={register}
-                      className="bg-[#235785] transition hover:border-black  hover:bg-[#c28f33] border text-white font-bold p-2 rounded-full w-1/2"
+                      className="bg-[#235785] transition hover:border-black  hover:bg-[#f5b951] border text-white font-bold p-2 rounded-full w-1/2"
                     >
                       Register
                     </button>
@@ -151,18 +153,6 @@ function Register() {
               </div>
             </div>
           </div>
-
-          <video
-            autoPlay
-            muted
-            controls={false}
-            loop
-            playsInline
-            className="fixed inset-0 object-cover w-full h-full z-0"
-          >
-            <source src="/video.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
         </section>
       </div>
     </>
